@@ -4,27 +4,17 @@ import { NextResponse } from 'next/server'
 // GET - ビジネス用語一覧取得
 export async function GET() {
   try {
-    console.log('Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL)
-    console.log('Supabase Key exists:', !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
-    
     const { data, error } = await supabase
       .from('business_terms')
       .select('*')
       .order('created_at', { ascending: false })
 
-    console.log('Supabase response:', { data, error })
-
-    if (error) {
-      console.error('Supabase error:', error)
-      throw error
-    }
+    if (error) throw error
 
     return NextResponse.json({ data })
   } catch (error) {
-    console.error('API Error:', error)
     return NextResponse.json({ 
-      error: 'Failed to fetch terms',
-      details: error instanceof Error ? error.message : 'Unknown error'
+      error: 'Failed to fetch terms'
     }, { status: 500 })
   }
 }
