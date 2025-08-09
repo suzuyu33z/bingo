@@ -107,7 +107,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     switch (name) {
       case 'describe_schema': {
         // Get all tables by trying to query business_terms
-        const { data, error } = await supabase
+        const { error } = await supabase
           .from('business_terms')
           .select('*')
           .limit(0);

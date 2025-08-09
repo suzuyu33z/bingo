@@ -72,10 +72,6 @@ export default function Home() {
   const [businessTerms, setBusinessTerms] = useState<string[]>(defaultBusinessTerms);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchTermsAndInitialize();
-  }, []);
-
   const fetchTermsAndInitialize = async () => {
     try {
       const response = await fetch('/api/terms');
@@ -95,6 +91,10 @@ export default function Home() {
       initializeBingoCard();
     }
   };
+
+  useEffect(() => {
+    fetchTermsAndInitialize();
+  }, []);
 
   const initializeBingoCard = () => {
     const shuffledTerms = shuffleArray(businessTerms).slice(0, 25);
@@ -206,12 +206,12 @@ export default function Home() {
             >
               新しいゲーム
             </button>
-            <a
-              href="/admin"
+            <button
+              onClick={() => window.location.href = '/admin'}
               className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors"
             >
               用語管理
-            </a>
+            </button>
           </div>
         </div>
 

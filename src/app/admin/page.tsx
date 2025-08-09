@@ -203,12 +203,12 @@ export default function AdminPage() {
         </div>
 
         <div className="text-center mt-8">
-          <a
-            href="/"
+          <button
+            onClick={() => window.location.href = '/'}
             className="inline-block px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
           >
             ビンゴゲームに戻る
-          </a>
+          </button>
         </div>
       </div>
     </div>
