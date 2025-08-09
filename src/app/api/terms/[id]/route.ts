@@ -4,11 +4,12 @@ import { NextResponse } from 'next/server'
 // PUT - ビジネス用語更新
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const { term } = await request.json()
-    const id = parseInt(params.id)
+    const resolvedParams = await params
+    const id = parseInt(resolvedParams.id)
 
     if (!term || term.trim() === '') {
       return NextResponse.json({ error: 'Term is required' }, { status: 400 })
@@ -31,10 +32,11 @@ export async function PUT(
 // DELETE - ビジネス用語削除
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = parseInt(params.id)
+    const resolvedParams = await params
+    const id = parseInt(resolvedParams.id)
 
     const { error } = await supabase
       .from('business_terms')
