@@ -94,6 +94,7 @@ export default function Home() {
 
   useEffect(() => {
     fetchTermsAndInitialize();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const initializeBingoCard = () => {

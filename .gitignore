@@ -45,3 +45,6 @@ scripts/test-mcp.js
 scripts/create-schema.js
 scripts/create-with-mcp.js
 scripts/seed-with-mcp.js
+
+# MCP development files (not used in production)
+src/lib/mcp-client.ts
